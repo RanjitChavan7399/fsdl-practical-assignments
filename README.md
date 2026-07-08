@@ -4,11 +4,11 @@
 
 **Name:** Ranjit Chavan
 
-**Roll No.:** YOUR_ROLL_NUMBER
+**Roll No.:** 123B1B103
 
 **Class:** T.Y. B.Tech Computer Engineering
 
-**Division:** YOUR_DIVISION
+**Division:** B
 
 **Subject:** Full Stack Development Lab (FSDL)
 
@@ -76,13 +76,13 @@ fsdl-practical-assignments/
 
 🌐 **Live Website**
 
-https://YOUR_USERNAME.github.io/fsdl-practical-assignments/
+[https://YOUR_USERNAME.github.io/fsdl-practical-assignments/](https://ranjitchavan7399.github.io/fsdl-practical-assignments/)
 
 ---
 
 # GitHub Repository
 
-https://github.com/YOUR_USERNAME/fsdl-practical-assignments
+[https://github.com/YOUR_USERNAME/fsdl-practical-assignments](https://github.com/RanjitChavan7399/fsdl-practical-assignments)
 
 ---
 
@@ -129,7 +129,7 @@ git push -u origin main
 
 GitHub: https://github.com/RanjitChavan7399
 
-LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME
+[LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME](https://www.linkedin.com/in/ranjit-chavan-073613291/)
 
 ---
 

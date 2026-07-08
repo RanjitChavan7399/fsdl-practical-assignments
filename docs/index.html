@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ranjit Chavan | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandDark: '#0f172a', /* slate-900 */
+            brandSlate: '#1e293b', /* slate-800 */
+            accentSky: '#38bdf8', /* sky-400 */
+            accentTeal: '#2dd4bf', /* teal-400 */
+            glassBg: 'rgba(30, 41, 59, 0.7)', /* slate-800 with opacity */
+            glassBorder: 'rgba(255, 255, 255, 0.12)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- p5.js Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-brandDark text-slate-100 antialiased selection:bg-accentSky/30 selection:text-white">
+
+  <!-- Viewport Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-slate-900/60 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="#home" class="text-2xl font-bold tracking-wider text-white hover:text-accentSky transition">
+        Ranjit<span class="text-accentSky">.</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="flex items-center gap-2 hover:text-accentSky text-slate-300 transition text-sm font-medium">
+          <i class="fa-solid fa-house text-accentSky"></i> Home
+        </a>
+        <a href="#about" class="flex items-center gap-2 hover:text-accentSky text-slate-300 transition text-sm font-medium">
+          <i class="fa-solid fa-graduation-cap text-accentSky"></i> Journey
+        </a>
+        <a href="#skills" class="flex items-center gap-2 hover:text-accentSky text-slate-300 transition text-sm font-medium">
+          <i class="fa-solid fa-code text-accentSky"></i> Skills
+        </a>
+        <a href="#projects" class="flex items-center gap-2 hover:text-accentSky text-slate-300 transition text-sm font-medium">
+          <i class="fa-solid fa-laptop-code text-accentSky"></i> Projects
+        </a>
+        <a href="#contact" class="flex items-center gap-2 hover:text-accentSky text-slate-300 transition text-sm font-medium">
+          <i class="fa-solid fa-paper-plane text-accentSky"></i> Contact
+        </a>
+      </nav>
+
+      <!-- Mobile Nav Toggle -->
+      <button class="md:hidden text-white text-2xl hover:text-accentSky focus:outline-none" id="nav-toggle" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Slide Overlay Menu -->
+    <div id="mobile-menu" class="hidden absolute top-[65px] left-0 w-full bg-brandDark/95 backdrop-blur-xl border-b border-white/10 z-40 transition-all duration-300">
+      <div class="flex flex-col items-center space-y-6 py-8">
+        <a href="#home" class="mobile-link flex items-center gap-3 text-lg text-slate-200 hover:text-accentSky">
+          <i class="fa-solid fa-house text-accentSky"></i> Home
+        </a>
+        <a href="#about" class="mobile-link flex items-center gap-3 text-lg text-slate-200 hover:text-accentSky">
+          <i class="fa-solid fa-graduation-cap text-accentSky"></i> Journey
+        </a>
+        <a href="#skills" class="mobile-link flex items-center gap-3 text-lg text-slate-200 hover:text-accentSky">
+          <i class="fa-solid fa-code text-accentSky"></i> Skills
+        </a>
+        <a href="#projects" class="mobile-link flex items-center gap-3 text-lg text-slate-200 hover:text-accentSky">
+          <i class="fa-solid fa-laptop-code text-accentSky"></i> Projects
+        </a>
+        <a href="#contact" class="mobile-link flex items-center gap-3 text-lg text-slate-200 hover:text-accentSky">
+          <i class="fa-solid fa-paper-plane text-accentSky"></i> Contact
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-900 via-brandDark to-brandDark pt-16" id="home">
+    <!-- p5 canvas container -->
+    <div id="p5-canvas" aria-hidden="true"></div>
+
+    <div class="relative z-10 max-w-7xl w-full mx-auto px-6 py-20 grid md:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Left: Content -->
+      <div class="md:col-span-7 flex flex-col items-start text-left space-y-6">
+        <div class="bg-white/5 border border-white/10 backdrop-blur-lg px-4 py-2 rounded-full inline-flex items-center gap-2 reveal">
+          <span class="w-2.5 h-2.5 bg-accentTeal rounded-full animate-pulse"></span>
+          <span class="text-xs uppercase tracking-widest text-slate-300 font-semibold">Computer Engineering Undergraduate</span>
+        </div>
+        
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none text-white reveal delay-100">
+          I am <span class="bg-gradient-to-r from-sky-200 via-sky-300 to-teal-200 bg-clip-text text-transparent">Ranjit Chavan</span>
+        </h1>
+        
+        <p class="text-lg text-slate-400 max-w-2xl leading-relaxed reveal delay-200">
+          I build and deploy scalable, AI-powered systems and cloud-native infrastructure with a focus on automation, ML, and DevOps.
+        </p>
+
+        <!-- Focus & Location Grid -->
+        <div class="grid grid-cols-2 gap-8 w-full max-w-md pt-4 reveal delay-300">
+          <div class="border-l-2 border-accentSky pl-4">
+            <span class="text-xs uppercase text-slate-500 font-bold tracking-wider">Core Focus</span>
+            <p class="text-base text-slate-200 font-medium mt-1">AI, ML & DevOps</p>
+          </div>
+          <div class="border-l-2 border-accentTeal pl-4">
+            <span class="text-xs uppercase text-slate-500 font-bold tracking-wider">Location</span>
+            <p class="text-base text-slate-200 font-medium mt-1">Pune, Maharashtra, India</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-4 pt-6 w-full sm:w-auto reveal delay-400">
+          <div class="magnetic-btn w-full sm:w-auto">
+            <a href="https://drive.google.com/file/d/1I7HFqQ0RzXDfvYZHfwCQwXRKUvgnI3xA/view?usp=sharing" target="_blank" class="block w-full sm:w-auto text-center px-8 py-4 rounded-xl text-slate-900 bg-gradient-to-r from-accentSky to-accentTeal font-bold shadow-lg shadow-accentSky/25 hover:shadow-xl hover:shadow-accentSky/40 hover:-translate-y-0.5 transition duration-300">
+              <i class="fa-solid fa-file-arrow-down mr-2"></i> Download CV
+            </a>
+          </div>
+          <div class="magnetic-btn w-full sm:w-auto">
+            <a href="#projects" class="block w-full sm:w-auto text-center px-8 py-4 rounded-xl border border-white/20 bg-white/5 hover:bg-white/10 text-white font-semibold hover:-translate-y-0.5 transition duration-300 backdrop-blur-md">
+              View Projects
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Right: Photo -->
+      <div class="md:col-span-5 flex justify-center relative reveal">
+        <div class="relative group">
+          <!-- Glass glowing border backdrop -->
+          <div class="absolute -inset-1 bg-gradient-to-r from-accentSky to-accentTeal rounded-3xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+          
+          <div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-3xl overflow-hidden border border-white/10 bg-brandDark p-3 shadow-2xl backdrop-blur-md">
+            <img src="profile.png" alt="Ranjit Chavan" class="w-full h-full object-cover rounded-2xl grayscale group-hover:grayscale-0 transition duration-500">
+          </div>
+
+          <!-- Absolute float badges -->
+          <div class="absolute -top-4 -right-4 bg-slate-800/80 border border-white/10 backdrop-blur-lg px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2">
+            <i class="fa-solid fa-server text-accentTeal"></i>
+            <span class="text-xs font-semibold text-slate-200">DevOps & Cloud</span>
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-slate-800/80 border border-white/10 backdrop-blur-lg px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2">
+            <i class="fa-solid fa-code-compare text-accentSky"></i>
+            <span class="text-xs font-semibold text-slate-200">200+ DSA Solved</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scrolling Pulse Mouse -->
+    <div class="absolute bottom-6 flex justify-center w-full" aria-hidden="true">
+      <div class="animate-bounce">
+        <a href="#about" aria-label="Scroll down">
+          <i class="fa-solid fa-chevron-down text-slate-500 hover:text-accentSky text-2xl transition"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY / ABOUT SECTION -->
+  <section class="relative w-full py-24 bg-brandDark border-t border-white/5" id="about">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center mb-20 reveal">
+        <p class="text-accentSky uppercase tracking-widest text-xs font-bold mb-2">Background Context</p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">My Journey & Experience</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-accentSky to-accentTeal mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+          From core computer science fundamentals to cloud-native deployments and machine learning systems.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left Side: Timeline (B.Tech Education & DevOps Intern experience) -->
+        <div class="lg:col-span-7 relative pl-8 border-l border-white/15 space-y-12">
+          
+          <!-- Experience Card: DevOps Intern -->
+          <div class="relative timeline-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg reveal">
+            <span class="absolute -left-[38px] top-6 w-4 h-4 bg-accentTeal rounded-full shadow-lg shadow-accentTeal/50 border-4 border-brandDark"></span>
+            
+            <div class="tilt-inner space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-3 text-accentTeal">
+                  <i class="fa-solid fa-server"></i>
+                  <h3 class="text-lg font-bold text-white">DevOps Intern</h3>
+                </div>
+                <span class="text-xs px-2.5 py-1 bg-accentTeal/10 text-accentTeal border border-accentTeal/20 rounded-full font-medium">May 2026 - June 2026</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-300">MediaStroke Web Services Pvt. Ltd. <span class="text-xs font-normal text-slate-400">(Pune, Maharashtra)</span></p>
+              
+              <ul class="list-disc list-inside text-slate-300 text-xs space-y-2 pt-2 leading-relaxed">
+                <li>Deployed containerized applications using Docker and Kubernetes on Linux-based environments.</li>
+                <li>Configured Prometheus and Grafana dashboards for infrastructure monitoring and visualization of system metrics.</li>
+                <li>Assisted in deploying and testing Ceph distributed storage clusters to understand storage scalability and fault tolerance.</li>
+                <li>Collaborated with the DevOps team to troubleshoot deployment issues and improve infrastructure reliability.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Education Card: B.Tech PCCOE -->
+          <div class="relative timeline-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg reveal delay-100">
+            <span class="absolute -left-[38px] top-6 w-4 h-4 bg-accentSky rounded-full shadow-lg shadow-accentSky/50 border-4 border-brandDark"></span>
+            
+            <div class="tilt-inner space-y-2">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-3 text-accentSky">
+                  <i class="fa-solid fa-graduation-cap"></i>
+                  <h3 class="text-lg font-bold text-white">Bachelor of Technology</h3>
+                </div>
+                <span class="text-xs px-2.5 py-1 bg-accentSky/10 text-accentSky border border-accentSky/20 rounded-full font-medium">Aug 2023 - Present</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-300">Pimpri Chinchwad College of Engineering, Pune</p>
+              <p class="text-xs text-slate-400">Computer Engineering Undergraduate · CGPA: 8.13 / 10</p>
+            </div>
+          </div>
+
+          <!-- Relevant Coursework Grid -->
+          <div class="relative bg-slate-800/60 border border-white/10 backdrop-blur-lg p-6 rounded-2xl shadow-lg reveal delay-200">
+            <div class="flex items-center gap-3 mb-4 text-accentTeal">
+              <i class="fa-solid fa-book-bookmark"></i>
+              <h3 class="text-md font-bold text-white uppercase tracking-wider">Relevant Coursework</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Data Structures</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Database Management</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Cloud Computing</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">DevOps</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Machine Learning</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Generative AI</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Operating Systems</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Computer Networks</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Data Visualisation</span>
+              <span class="text-xs px-3 py-1.5 bg-brandDark/60 border border-white/5 rounded-lg text-slate-300 font-medium">Statistical Data Analysis</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Side: Narrative Summary and Github Stats -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          <!-- Premium narrative glass card -->
+          <div class="bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl reveal">
+            <h3 class="text-xl font-bold bg-gradient-to-r from-white via-sky-200 to-teal-200 bg-clip-text text-transparent mb-4">Summary</h3>
+            <p class="text-sm leading-relaxed text-slate-300">
+              Computer Engineering undergraduate at PCCOE Pune with hands-on experience in Machine Learning, Cloud Computing, DevOps, and Cloud-Native Infrastructure. Experienced in developing AI-powered applications and deploying scalable solutions using Python, TensorFlow, AWS, Docker, Kubernetes, and Ceph. Solved 200+ DSA problems and passionate about building scalable software systems through automation and modern cloud technologies.
+            </p>
+          </div>
+
+          <div class="bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-2xl flex flex-col gap-4 reveal">
+            <div class="flex items-center gap-3 pb-4 border-b border-white/10">
+              <i class="fa-brands fa-github text-2xl text-accentSky"></i>
+              <div>
+                <h3 class="text-lg font-bold text-white">GitHub Contribution Hub</h3>
+                <p class="text-xs text-slate-400">@RanjitChavan7399</p>
+              </div>
+            </div>
+
+            <!-- Github Stats Embed Cards -->
+            <div class="space-y-4">
+              <img src="https://github-readme-stats-anuraghazra.vercel.app/api?username=RanjitChavan7399&show_icons=true&theme=tokyonight" 
+                   alt="GitHub Stats" 
+                   class="w-full rounded-xl border border-white/5 shadow-md">
+              <img src="https://github-readme-stats-anuraghazra.vercel.app/api/top-langs/?username=RanjitChavan7399&layout=compact&theme=tokyonight" 
+                   alt="Top Languages" 
+                   class="w-full rounded-xl border border-white/5 shadow-md">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TECHNICAL SKILLS SECTION -->
+  <section class="relative w-full py-24 bg-brandDark overflow-hidden border-t border-white/5" id="skills">
+    <div class="max-w-7xl mx-auto px-6 mb-16 text-center reveal">
+      <p class="text-accentTeal uppercase tracking-widest text-xs font-bold mb-2">My Toolbelt</p>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Technical Stack</h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-accentTeal to-accentSky mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- Infinite Marquee rows -->
+    <div class="space-y-8 max-w-[100vw]">
+      
+      <!-- Row 1: Languages (Left marquee) -->
+      <div class="marquee-container" aria-label="Programming Languages stack">
+        <div class="marquee-content">
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-6 h-6 object-contain" alt="Python">
+            <span>Python</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-6 h-6 object-contain" alt="C++">
+            <span>C++</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="w-6 h-6 object-contain" alt="C">
+            <span>C</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-6 h-6 object-contain" alt="SQL">
+            <span>SQL</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="w-6 h-6 object-contain" alt="MongoDB">
+            <span>MongoDB</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-6 h-6 object-contain" alt="HTML5">
+            <span>HTML5</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-6 h-6 object-contain" alt="CSS3">
+            <span>CSS3</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-6 h-6 object-contain" alt="JavaScript">
+            <span>JavaScript</span>
+          </div>
+
+          <!-- Duplicate for seamless scroll -->
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="w-6 h-6 object-contain" alt="Python">
+            <span>Python</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" class="w-6 h-6 object-contain" alt="C++">
+            <span>C++</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="w-6 h-6 object-contain" alt="C">
+            <span>C</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" class="w-6 h-6 object-contain" alt="SQL">
+            <span>SQL</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" class="w-6 h-6 object-contain" alt="MongoDB">
+            <span>MongoDB</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="w-6 h-6 object-contain" alt="HTML5">
+            <span>HTML5</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="w-6 h-6 object-contain" alt="CSS3">
+            <span>CSS3</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="w-6 h-6 object-contain" alt="JavaScript">
+            <span>JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Frameworks & Libraries (Right/Reverse marquee) -->
+      <div class="marquee-container" aria-label="Web frameworks and Databases">
+        <div class="marquee-content reverse">
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Numpy</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Pandas</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Scikit-learn</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>TensorFlow</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Seaborn</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>PowerBI</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-6 h-6 object-contain" alt="Git">
+            <span>Git</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-6 h-6 object-contain" alt="GitHub">
+            <span>GitHub</span>
+          </div>
+
+          <!-- Duplicate for seamless scroll -->
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Numpy</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Pandas</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Scikit-learn</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>TensorFlow</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>Seaborn</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <span>PowerBI</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="w-6 h-6 object-contain" alt="Git">
+            <span>Git</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-6 h-6 object-contain" alt="GitHub">
+            <span>GitHub</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Cloud & DevOps (Left marquee) -->
+      <div class="marquee-container" aria-label="Tools and Advanced engineering stack">
+        <div class="marquee-content">
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="w-6 h-6 object-contain" alt="AWS">
+            <span>AWS Cloud</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-6 h-6 object-contain" alt="Docker">
+            <span>Docker</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-6 h-6 object-contain" alt="Kubernetes">
+            <span>Kubernetes</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-database text-accentTeal text-lg"></i>
+            <span>Ceph Storage</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-chart-area text-accentSky text-lg"></i>
+            <span>Prometheus</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-chart-line text-accentTeal text-lg"></i>
+            <span>Grafana</span>
+          </div>
+
+          <!-- Duplicate for seamless scroll -->
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="w-6 h-6 object-contain" alt="AWS">
+            <span>AWS Cloud</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="w-6 h-6 object-contain" alt="Docker">
+            <span>Docker</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-6 h-6 object-contain" alt="Kubernetes">
+            <span>Kubernetes</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-database text-accentTeal text-lg"></i>
+            <span>Ceph Storage</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-chart-area text-accentSky text-lg"></i>
+            <span>Prometheus</span>
+          </div>
+          <div class="flex items-center gap-3 px-6 py-3 bg-slate-800/60 border border-white/10 rounded-2xl text-white font-medium shadow-md">
+            <i class="fa-solid fa-chart-line text-accentTeal text-lg"></i>
+            <span>Grafana</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SELECTED PROJECTS SECTION -->
+  <section class="relative w-full py-24 bg-brandDark border-t border-white/5" id="projects">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center mb-20 reveal">
+        <p class="text-accentSky uppercase tracking-widest text-xs font-bold mb-2">My Work</p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Selected Projects</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-accentSky to-accentTeal mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Project 1: Cropleaf -->
+        <article class="glow-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal">
+          <div class="tilt-inner space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase text-accentSky font-bold tracking-wider">AI / CNN / Django</span>
+              <span class="text-xs text-slate-400 font-semibold">Apr 2025</span>
+            </div>
+            
+            <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">Cropleaf — Crop Disease Detection</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Developed a CNN-based crop disease detection model using TensorFlow and OpenCV. Built a Django-based web app enabling real-time prediction from uploaded leaf images. Secured Government Copyright Registration.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">TensorFlow</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">OpenCV</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Django</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Copyrighted</span>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+            <a href="https://github.com/RanjitChavan7399/CropLeaf" target="_blank" class="text-xs font-semibold text-white hover:text-accentSky transition flex items-center gap-2">
+              <i class="fa-brands fa-github text-lg"></i> View Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Telemedicine Platform -->
+        <article class="glow-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-100">
+          <div class="tilt-inner space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase text-accentTeal font-bold tracking-wider">Cloud / Full-Stack</span>
+              <span class="text-xs text-slate-400 font-semibold">Feb 2026</span>
+            </div>
+            
+            <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">Cloud-Based Telemedicine Platform</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Designed a cloud-based telemedicine platform utilizing Django, MongoDB, and AWS. Implemented secure user authentication, appointment scheduling, digital medical record management, and secure AWS file storage.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">AWS</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Django</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">MongoDB</span>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+            <a href="https://github.com/RanjitChavan7399/TeleMed" target="_blank" class="text-xs font-semibold text-white hover:text-accentSky transition flex items-center gap-2">
+              <i class="fa-brands fa-github text-lg"></i> View Code
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Hotel Booking Demand Cancellation -->
+        <article class="glow-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-200">
+          <div class="tilt-inner space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase text-accentSky font-bold tracking-wider">Data Science / ML</span>
+              <span class="text-xs text-slate-400 font-semibold">Nov 2025</span>
+            </div>
+            
+            <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">Hotel Booking Demand Cancellation Prediction</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Developed ML models to predict hotel booking cancellations using NumPy and Pandas. Performed extensive EDA and compared Random Forest, XGBoost, and K-Means algorithms to optimize booking insights.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Scikit-learn</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Pandas</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">XGBoost</span>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/5 flex items-center gap-6">
+            <a href="https://github.com/RanjitChavan7399/ML_Project" target="_blank" class="text-xs font-semibold text-slate-300 hover:text-accentSky transition flex items-center gap-1.5">
+              <i class="fa-brands fa-github text-lg"></i> View Code
+            </a>
+            <a href="https://colab.research.google.com/drive/1ljgc3F1LTmBAuYK4b5wc6GqCKAkTYkR8?usp=drive_link" target="_blank" class="text-xs font-semibold text-white hover:text-accentSky transition flex items-center gap-1.5">
+              <i class="fa-solid fa-file-code text-lg text-yellow-500"></i> Open Notebook
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: Blockchain Vehicle Lifecycle -->
+        <article class="glow-card tilt-card bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex flex-col justify-between hover:scale-[1.02] transition-transform duration-300 reveal delay-300">
+          <div class="tilt-inner space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs uppercase text-accentTeal font-bold tracking-wider">Blockchain / Web3</span>
+              <span class="text-xs text-slate-400 font-semibold">Jan 2026</span>
+            </div>
+            
+            <h3 class="text-xl font-extrabold text-white tracking-tight leading-snug">Decentralized Vehicle Lifecycle Registry</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Designed a decentralized vehicle history registry using Solidity smart contracts. Integrated a React+Vite web interface with MetaMask and Web3Auth social logins. Tracks ownership history, services, and accidents on-chain.
+            </p>
+            
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Solidity</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">Web3 / Ethers</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">React & Vite</span>
+              <span class="text-[10px] px-2 py-1 bg-brandDark/80 border border-white/5 rounded-full text-slate-300">MetaMask</span>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-white/5 flex items-center justify-between">
+            <a href="https://github.com/RanjitChavan7399/Blockchin" target="_blank" class="text-xs font-semibold text-white hover:text-accentSky transition flex items-center gap-2">
+              <i class="fa-brands fa-github text-lg"></i> View Code
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS & CERTIFICATIONS SECTION -->
+  <section class="relative w-full py-24 bg-brandDark border-t border-white/5" id="achievements">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center mb-16 reveal">
+        <p class="text-accentSky uppercase tracking-widest text-xs font-bold mb-2">Milestones</p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Achievements & Certifications</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-accentSky to-accentTeal mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Left Column: Key Achievements -->
+        <div class="flex flex-col gap-6">
+          <div class="bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex items-start gap-5 shadow-xl reveal">
+            <div class="p-4 bg-accentSky/10 text-accentSky rounded-2xl">
+              <i class="fa-solid fa-trophy text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">200+ DSA Solved</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Solved 200+ Data Structures and Algorithms problems across multiple coding platforms like LeetCode and HackerRank.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex items-start gap-5 shadow-xl reveal delay-100">
+            <div class="p-4 bg-accentTeal/10 text-accentTeal rounded-2xl">
+              <i class="fa-solid fa-copyright text-2xl"></i>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Government Copyright</h3>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Secured an official Government Copyright Registration for the deep-learning-based agricultural intelligence project, **Cropleaf**.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Certifications list -->
+        <div class="bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 shadow-xl flex flex-col justify-between reveal delay-200">
+          <div class="space-y-6">
+            <div class="flex items-center gap-3 pb-4 border-b border-white/10">
+              <i class="fa-solid fa-file-certificate text-2xl text-accentSky"></i>
+              <h3 class="text-lg font-bold text-white">Verified Certifications</h3>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Cert 1 -->
+              <a href="https://drive.google.com/file/d/1tMhw9jYK116snHGs9sh-Neez7k7dXq71/view?usp=sharing" target="_blank" class="flex items-start gap-3 group/cert hover:translate-x-1 transition duration-300">
+                <i class="fa-solid fa-circle-check text-accentTeal mt-1 group-hover/cert:scale-110 transition duration-300"></i>
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-200 group-hover/cert:text-accentSky transition">NPTEL Cloud Computing</h4>
+                  <p class="text-xs text-slate-400">Advanced architectural and cloud hosting validation.</p>
+                  <span class="inline-flex items-center gap-1 text-[10px] text-accentTeal group-hover/cert:text-accentSky font-medium mt-1">
+                    View Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                  </span>
+                </div>
+              </a>
+              <!-- Cert 2 -->
+              <a href="https://drive.google.com/file/d/1010NYnFPnQ0YWGzxsZZYWIRzl5XHYq95/view?usp=sharing" target="_blank" class="flex items-start gap-3 group/cert hover:translate-x-1 transition duration-300">
+                <i class="fa-solid fa-circle-check text-accentTeal mt-1 group-hover/cert:scale-110 transition duration-300"></i>
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-200 group-hover/cert:text-accentSky transition">NPTEL Python for Data Science</h4>
+                  <p class="text-xs text-slate-400">Data pipelines, analytics, and numerical modeling.</p>
+                  <span class="inline-flex items-center gap-1 text-[10px] text-accentTeal group-hover/cert:text-accentSky font-medium mt-1">
+                    View Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                  </span>
+                </div>
+              </a>
+              <!-- Cert 3 -->
+              <a href="https://drive.google.com/file/d/1di1uQCrnBP08GNDDzOJ60jm9lIhg0rEL/view?usp=sharing" target="_blank" class="flex items-start gap-3 group/cert hover:translate-x-1 transition duration-300">
+                <i class="fa-solid fa-circle-check text-accentTeal mt-1 group-hover/cert:scale-110 transition duration-300"></i>
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-200 group-hover/cert:text-accentSky transition">Coursera The Full-Stack By Meta</h4>
+                  <p class="text-xs text-slate-400">Modern frontend, API development, and deployment frameworks.</p>
+                  <span class="inline-flex items-center gap-1 text-[10px] text-accentTeal group-hover/cert:text-accentSky font-medium mt-1">
+                    View Certificate <i class="fa-solid fa-arrow-up-right-from-square text-[8px]"></i>
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT & SOCIALS SECTION -->
+  <section class="relative w-full py-24 bg-brandDark border-t border-white/5" id="contact">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center mb-20 reveal">
+        <p class="text-accentTeal uppercase tracking-widest text-xs font-bold mb-2">Get In Touch</p>
+        <h2 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight">Let's Collaborate</h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-accentTeal to-accentSky mx-auto mt-4 rounded-full"></div>
+        <p class="text-slate-400 mt-4 max-w-xl mx-auto text-sm sm:text-base">
+          Open to internships, projects, and collaborations in web development and machine learning.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-12 items-stretch">
+        
+        <!-- Left Side: Sleek Contact Form -->
+        <div class="lg:col-span-7 bg-slate-800/60 border border-white/10 backdrop-blur-lg rounded-3xl p-8 flex flex-col justify-between shadow-2xl reveal">
+          <form class="space-y-6" id="contact-form">
+            <div class="grid sm:grid-cols-2 gap-6">
+              <div class="flex flex-col space-y-2">
+                <label for="name" class="text-xs uppercase text-slate-400 font-bold tracking-wider">Your Name</label>
+                <input type="text" id="name" placeholder="Ranjit Chavan" required class="glass-input px-4 py-3.5 text-sm">
+              </div>
+              <div class="flex flex-col space-y-2">
+                <label for="email" class="text-xs uppercase text-slate-400 font-bold tracking-wider">Your Email</label>
+                <input type="email" id="email" placeholder="ranjitchavan110@gmail.com" required class="glass-input px-4 py-3.5 text-sm">
+              </div>
+            </div>
+            
+            <div class="flex flex-col space-y-2">
+              <label for="message" class="text-xs uppercase text-slate-400 font-bold tracking-wider">Your Message</label>
+              <textarea id="message" rows="5" placeholder="I would love to discuss a project with you..." required class="glass-input px-4 py-3.5 text-sm resize-none"></textarea>
+            </div>
+
+            <div class="magnetic-btn w-full">
+              <button type="submit" class="w-full text-center px-8 py-4 rounded-xl text-slate-900 bg-gradient-to-r from-accentSky to-accentTeal font-bold shadow-lg shadow-accentSky/25 hover:shadow-xl hover:shadow-accentSky/40 hover:-translate-y-0.5 transition duration-300">
+                <i class="fa-solid fa-paper-plane mr-2"></i> Send Message
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Side: Big Premium Connected Socials -->
+        <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+          
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/ranjit-chavan-073613291/" target="_blank" class="flex flex-col items-center justify-center bg-slate-800/60 border border-white/10 hover:border-blue-500/30 hover:bg-blue-500/5 backdrop-blur-lg rounded-3xl p-6 shadow-xl hover:scale-105 transition-all duration-300 reveal">
+            <i class="fa-brands fa-linkedin text-5xl text-blue-500 mb-3"></i>
+            <span class="text-sm font-bold text-slate-200">LinkedIn</span>
+            <span class="text-xs text-slate-400 mt-1 select-all">ranjit-chavan-073613291</span>
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/RanjitChavan7399" target="_blank" class="flex flex-col items-center justify-center bg-slate-800/60 border border-white/10 hover:border-gray-400/30 hover:bg-white/5 backdrop-blur-lg rounded-3xl p-6 shadow-xl hover:scale-105 transition-all duration-300 reveal delay-100">
+            <i class="fa-brands fa-github text-5xl text-slate-200 mb-3"></i>
+            <span class="text-sm font-bold text-slate-200">GitHub</span>
+            <span class="text-xs text-slate-400 mt-1 select-all">@RanjitChavan7399</span>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/ranjit_chavan__110/?next=%2F" target="_blank" class="flex flex-col items-center justify-center bg-slate-800/60 border border-white/10 hover:border-pink-500/30 hover:bg-pink-500/5 backdrop-blur-lg rounded-3xl p-6 shadow-xl hover:scale-105 transition-all duration-300 reveal delay-200">
+            <i class="fa-brands fa-instagram text-5xl text-pink-400 mb-3"></i>
+            <span class="text-sm font-bold text-slate-200">Instagram</span>
+            <span class="text-xs text-slate-400 mt-1 select-all">@ranjit_chavan__110</span>
+          </a>
+
+          <!-- Email / Mailto -->
+          <a href="mailto:ranjitchavan110@gmail.com" class="flex flex-col items-center justify-center bg-slate-800/60 border border-white/10 hover:border-red-500/30 hover:bg-red-500/5 backdrop-blur-lg rounded-3xl p-6 shadow-xl hover:scale-105 transition-all duration-300 reveal delay-300">
+            <i class="fa-solid fa-envelope text-5xl text-red-400 mb-3"></i>
+            <span class="text-sm font-bold text-slate-200">Email</span>
+            <span class="text-xs text-slate-400 mt-1 select-all break-all text-center">ranjitchavan110@gmail.com</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-[rgb(15,23,42)] border-t border-white/5 text-slate-400 py-8 text-center">
+    <div class="max-w-7xl mx-auto px-6">
+      <p class="text-sm">&copy; 2026 Ranjit Chavan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ============ INTERACTIVE CORE SCRIPTS ============ -->
+  <script>
+    // 1. Viewport Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const progressBar = document.getElementById('scroll-progress');
+      if (progressBar) progressBar.style.width = scrolled + '%';
+    });
+
+    // 2. Mobile Menu Toggler
+    const toggleBtn = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    toggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!toggleBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+      }
+    });
+
+    // 3. Project Card Glowing Spotlight Effect
+    const glowCards = document.querySelectorAll('.glow-card');
+    glowCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+
+    // 4. Scroll Reveal Intersection Observer
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.05 });
+    reveals.forEach(el => observer.observe(el));
+
+    // 5. 3D Glass Card Tilt Effect (Mousemove tracker)
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    // Disable on mobile/touch screens for performance
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const rotateY = ((x / rect.width) - 0.5) * 14; 
+          const rotateX = (0.5 - (y / rect.height)) * 14;
+          
+          card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+        });
+        
+        card.style.transformStyle = 'preserve-3d';
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+        });
+      });
+    }
+
+    // 6. Magnetic Buttons Interaction
+    const magneticBtns = document.querySelectorAll('.magnetic-btn');
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - (rect.left + rect.width / 2);
+          const y = e.clientY - (rect.top + rect.height / 2);
+          
+          // Pull gently by 30% of distance
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = 'translate(0px, 0px)';
+        });
+      });
+    }
+
+    // 7. p5.js Custom Geometric Mesh Background Sketch
+    let pts = [];
+    let triangles = [];
+    let bursts = [];
+    const spacing = 120;
+    const mouseDist = 160;
+    let w = 0, h = 0;
+    let colA, colB;
+
+    function setup() {
+      const container = document.getElementById('p5-canvas');
+      const canvas = createCanvas(container.offsetWidth, container.offsetHeight);
+      canvas.parent('p5-canvas');
+      noStroke();
+      
+      colA = color(56, 189, 248); // sky-400
+      colB = color(45, 212, 191); // teal-400
+      initGrid();
+    }
+
+    function windowResized() {
+      const container = document.getElementById('p5-canvas');
+      resizeCanvas(container.offsetWidth, container.offsetHeight);
+      initGrid();
+    }
+
+    function initGrid() {
+      pts = [];
+      triangles = [];
+      const container = document.getElementById('p5-canvas');
+      w = container.offsetWidth;
+      h = container.offsetHeight;
+      
+      const cols = Math.ceil(w / spacing) + 1;
+      const rows = Math.ceil(h / spacing) + 1;
+      
+      for (let y = 0; y <= rows; y++) {
+        for (let x = 0; x <= cols; x++) {
+          const px = x * spacing + random(-25, 25);
+          const py = y * spacing + random(-25, 25);
+          const phase = random(0, TWO_PI);
+          pts.push({
+            x: px,
+            y: py,
+            phase: phase,
+            _x: px,
+            _y: py
+          });
+        }
+      }
+      
+      const getIndex = (cx, cy) => cy * (cols + 1) + cx;
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const idxA = getIndex(x, y);
+          const idxB = getIndex(x + 1, y);
+          const idxC = getIndex(x, y + 1);
+          const idxD = getIndex(x + 1, y + 1);
+          
+          triangles.push([idxA, idxB, idxC]);
+          triangles.push([idxB, idxD, idxC]);
+        }
+      }
+    }
+
+    function mousePressed() {
+      if (mouseY < h) {
+        for (let i = 0; i < 15; i++) {
+          bursts.push({
+            x: mouseX,
+            y: mouseY,
+            vx: random(-3, 3),
+            vy: random(-3, 3),
+            size: random(3, 8),
+            opacity: 255
+          });
+        }
+      }
+    }
+
+    function draw() {
+      clear();
+      
+      const time = millis() * 0.001;
+      
+      // Update coordinates
+      for (let i = 0; i < pts.length; i++) {
+        const pt = pts[i];
+        
+        let ox = Math.sin(time * 0.7 + pt.phase) * 18;
+        let oy = Math.cos(time * 0.5 + pt.phase) * 18;
+        
+        const dx = mouseX - pt.x;
+        const dy = mouseY - pt.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        if (dist < mouseDist) {
+          const force = (mouseDist - dist) / mouseDist;
+          ox -= dx * force * 0.45;
+          oy -= dy * force * 0.45;
+        }
+        pt._x = pt.x + ox;
+        pt._y = pt.y + oy;
+      }
+      
+      // Draw triangles mesh
+      for (let i = 0; i < triangles.length; i++) {
+        const [idxA, idxB, idxC] = triangles[i];
+        const ptA = pts[idxA];
+        const ptB = pts[idxB];
+        const ptC = pts[idxC];
+        
+        const cx = (ptA._x + ptB._x + ptC._x) / 3;
+        const cy = (ptA._y + ptB._y + ptC._y) / 3;
+        
+        const distToCenter = Math.hypot(cx - w / 2, cy - h / 2);
+        const maxHalf = Math.max(w, h) / 2;
+        const baseOpacity = map(distToCenter, 0, maxHalf, 50, 6);
+        
+        const distToMouse = Math.hypot(cx - mouseX, cy - mouseY);
+        const hoverFactor = constrain(map(distToMouse, 0, 260, 1.8, 0), 0, 1.8);
+        
+        const finalOpacity = baseOpacity * (1 + hoverFactor);
+        
+        // Dynamic Sky-Teal Gradient lerp based on horizontal position
+        const lerpedCol = lerpColor(colA, colB, map(cx, 0, w, 0, 1));
+        lerpedCol.setAlpha(finalOpacity);
+        fill(lerpedCol);
+        triangle(ptA._x, ptA._y, ptB._x, ptB._y, ptC._x, ptC._y);
+      }
+      
+      // Draw mouse glowing lines
+      stroke(100, 200, 255, 30);
+      strokeWeight(1);
+      for (let i = 0; i < pts.length; i++) {
+        const ptA = pts[i];
+        const distToMouse = Math.hypot(ptA._x - mouseX, ptA._y - mouseY);
+        if (distToMouse < 90) {
+          for (let j = i + 1; j < pts.length; j++) {
+            const ptB = pts[j];
+            const distBToMouse = Math.hypot(ptB._x - mouseX, ptB._y - mouseY);
+            const distAB = Math.hypot(ptA._x - ptB._x, ptA._y - ptB._y);
+            
+            if (distBToMouse < 90 && distAB < spacing * 1.4) {
+              const lineOpacity = map(distAB, 0, spacing * 1.4, 75, 0);
+              stroke(100, 200, 255, lineOpacity);
+              line(ptA._x, ptA._y, ptB._x, ptB._y);
+            }
+          }
+        }
+      }
+      noStroke();
+
+      // Render & Update Particle Bursts
+      for (let i = bursts.length - 1; i >= 0; i--) {
+        const b = bursts[i];
+        b.x += b.vx;
+        b.y += b.vy;
+        b.opacity -= 6;
+        if (b.opacity <= 0) {
+          bursts.splice(i, 1);
+        } else {
+          fill(56, 189, 248, b.opacity);
+          ellipse(b.x, b.y, b.size);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Package - Travel Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Travel Booking</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="booking.html" class="active">Booking page</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </nav>
+    <div class="container">
+        <h2>Book a Travel Package</h2>
+        <p class="text-center">Welcome, <span id="userNameDisplay" style="font-weight: bold;"></span>!</p>
+        
+        <div id="msg" class="message"></div>
+        
+        <form id="bookingForm" onsubmit="handleBooking(event)">
+            <label for="b_name">Your Name:</label>
+            <input type="text" id="b_name" required readonly>
+            
+            <label for="b_package">Select Package:</label>
+            <select id="b_package" required>
+                <option value="" disabled selected>Select a package</option>
+                <option value="Goa Trip - ₹5000">Goa Trip – ₹5000</option>
+                <option value="Manali Trip - ₹8000">Manali Trip – ₹8000</option>
+                <option value="Kashmir Trip - ₹12000">Kashmir Trip – ₹12000</option>
+            </select>
+            
+            <label for="b_date">Travel Date:</label>
+            <input type="date" id="b_date" required>
+            
+            <button type="submit">Confirm Booking</button>
+        </form>
+        
+        <hr style="margin: 30px 0;">
+        
+        <h2>All Bookings</h2>
+        <div class="text-center" style="margin-bottom: 20px;">
+            <button onclick="fetchBookings()" style="background-color: #28a745;">Refresh List</button>
+        </div>
+        
+        <table id="bookingsTable">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Package</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody id="bookingsList">
+                <!-- Bookings loaded via JS -->
+            </tbody>
+        </table>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const username = localStorage.getItem('username');
+            if (!username) {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('userNameDisplay').innerText = username;
+                document.getElementById('b_name').value = username;
+                fetchBookings();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Booking - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Travel Booking</h1>
+    </header>
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="login.html" id="nav-login">Login</a>
+        <a href="register.html" id="nav-register">Register</a>
+        <a href="booking.html" id="nav-booking" style="display: none;">Booking page</a>
+        <a href="#" id="nav-logout" style="display: none;" onclick="logout()">Logout</a>
+    </nav>
+    <div class="container" style="max-width: 1100px;">
+        <h2>Explore Our Best Packages</h2>
+        <div class="packages">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Goa" class="card-img">
+                <div class="card-content">
+                    <h3>Goa Trip</h3>
+                    <p>3 Days, 2 Nights</p>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">Experience the ultimate beach getaway with beautiful sunsets.</p>
+                    <p class="price">₹5000</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Manali" class="card-img">
+                <div class="card-content">
+                    <h3>Manali Trip</h3>
+                    <p>4 Days, 3 Nights</p>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">Enjoy breathtaking snowy mountains and cool breezes.</p>
+                    <p class="price">₹8000</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Kashmir" class="card-img">
+                <div class="card-content">
+                    <h3>Kashmir Trip</h3>
+                    <p>5 Days, 4 Nights</p>
+                    <p style="font-size: 0.9rem; margin-top: 8px;">Paradise on earth with lush green valleys and lakes.</p>
+                    <p class="price">₹12000</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-20" id="login-prompt">
+            <p style="font-size: 1.1rem; margin-top: 20px;">
+                Please 
+                <a href="login.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Login</a> 
+                or 
+                <a href="register.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Register</a> 
+                to book a package.
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('username')) {
+                const prompt = document.getElementById('login-prompt');
+                if (prompt) prompt.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

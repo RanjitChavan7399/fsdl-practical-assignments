@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Travel Booking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Travel Booking</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html" class="active">Register</a>
+    </nav>
+    <div class="container">
+        <h2>User Registration</h2>
+        <div id="msg" class="message"></div>
+        <form id="registerForm" onsubmit="handleRegister(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+            
+            <button type="submit">Create Account</button>
+            <p class="text-center">Already have an account? <a href="login.html">Login here</a></p>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

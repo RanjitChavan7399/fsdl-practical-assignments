@@ -1,0 +1,23 @@
+{
+  "name": "driveinsight-ai",
+  "version": "1.0.0",
+  "description": "DriveInsight AI - Placement Preparation Platform",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "npm --prefix server start",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "mern",
+    "ai",
+    "placement"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "type": "commonjs"
+}

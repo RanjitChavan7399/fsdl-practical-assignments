@@ -1,0 +1,13 @@
+{
+  "name": "hospital-appointment-system",
+  "version": "1.0.0",
+  "description": "Hospital Appointment Booking System Basic Assignment",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.1",
+    "mongoose": "^8.23.0"
+  }
+}

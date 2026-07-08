@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | City Hospital</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <a href="index.html" class="nav-brand">🏥 City Hospital</a>
+        <div class="nav-links">
+            <span style="color: var(--text-muted); font-size: 14px; margin-right: 15px; font-weight: 500;">Secure
+                Portal</span>
+            <a href="index.html" class="btn-primary" style="background: #ffebe6; color: #bf2600;"
+                onclick="alert('Logged out securely.')">Logout</a>
+        </div>
+    </nav>
+
+    <div class="dashboard-wrapper">
+        <div class="dashboard-header">
+            <h2>Patient Dashboard</h2>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Left Side: Booking Form -->
+            <div class="card" style="width: 100%; max-width: none; align-self: start;">
+                <div class="card-header" style="text-align: left; margin-bottom: 20px;">
+                    <h3 style="font-size: 20px; color: var(--text-main);">Book New Appointment</h3>
+                    <p style="margin-top: 4px;">Schedule your next doctor visit.</p>
+                </div>
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="patientName">Patient Full Name</label>
+                        <input type="text" id="patientName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorName">Select Department / Doctor</label>
+                        <select id="doctorName" class="form-control" required>
+                            <option value="" disabled selected>Choose a Doctor...</option>
+                            <option value="Dr. Ranjit Chavan (General)">🩺 Dr. Ranjit Chavan (General Physician)</option>
+                            <option value="Dr. Yash Chavan (Dentist)">🦷 Dr. Yash Chavan (Dentist)</option>
+                            <option value="Dr. Kunal Biradar (Cardiology)">❤️ Dr. Kunal Biradar (Cardiologist)</option>
+                            <option value="Dr. Prathamesh Doiphode (Neurology)">🧠 Dr. Prathamesh Doiphode (Neurologist)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Confirm Appointment</button>
+                </form>
+                <div id="message" class="message"></div>
+            </div>
+
+            <!-- Right Side: Appointments List Grid -->
+            <div>
+                <h3
+                    style="font-size: 20px; color: var(--text-main); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                    Upcoming Appointments
+                </h3>
+                <div id="appointmentsList" class="appointment-cards">
+                    <!-- Cards will be injected here via script.js -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

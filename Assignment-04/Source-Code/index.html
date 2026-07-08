@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack Pro Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1>Finantial Dashboard</h1>
+                <p id="currentDate"></p>
+            </div>
+        </header>
+        <section class="summary">
+            <div class="card balance">
+                <h3>Balance</h3>
+                <p id="totalBalance">₹0.00</p>
+            </div>
+            <div class="card income">
+                <h3>Income</h3>
+                <p id="totalIncome">₹0.00</p>
+            </div>
+            <div class="card expense">
+                <h3>Expense</h3>
+                <p id="totalExpense">₹0.00</p>
+            </div>
+        </section>
+        <section class="form-section card">
+            <h2>Add Transaction</h2>
+            <form id="financeForm">
+                <input type="text" id="description" placeholder="Description" required>
+                <input type="number" id="amount" placeholder="Amount" required>
+                <select id="type">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <select id="category">
+                    <option>Salary</option>
+                    <option>Food</option>
+                    <option>Travel</option>
+                    <option>Shopping</option>
+                    <option>Bills</option>
+                    <option>Entertainment</option>
+                    <option>Investment</option>
+                </select>
+                <input type="date" id="date" required>
+                <button type="submit">Add</button>
+            </form>
+        </section>
+        <section class="charts">
+            <div class="card chart-box">
+                <h3>Income vs Expense</h3>
+                <canvas id="barChart"></canvas>
+            </div>
+            <div class="card chart-box">
+                <h3>Expense Distribution</h3>
+                <canvas id="doughnutChart"></canvas>
+            </div>
+            <div class="card chart-box full">
+                <h3>Balance Trend</h3>
+                <canvas id="lineChart"></canvas>
+            </div>
+        </section>
+        <section class="card">
+            <h2>Transactions</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionList"></tbody>
+            </table>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

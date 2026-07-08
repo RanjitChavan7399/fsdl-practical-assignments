@@ -6,7 +6,7 @@
 
 **Roll No.:** 123B1B103
 
-**Class:** T.Y. B.Tech Computer Engineering
+**Class:** B.Tech Computer Engineering
 
 **Division:** B
 
